@@ -4,8 +4,8 @@ const S3_BUCKET = process.env.BUCKET_NAME
 const REGION = process.env.REGION
 
 AWS.config.update({
-    accessKeyId: "AKIA3AXDXZP4R4VSO6AM",
-    secretAccessKey: "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"
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY
 })
 
 const S3Client = new AWS.S3({
