@@ -1,12 +1,24 @@
+import { useState } from "react"
+
 export default function Read() {
   const date = "2022, November 17"
-  const entry = "this is a really long text file or it should be atleast lol"
+  const [entryText, setEntryText] = useState("")
+
+  const getEntryData = () => {
+    fetch('/api/get-entry', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/plain',
+      }
+    }).then((res) => res.json())
+    .then(data => setEntryText(data.message)) 
+  }
 
   return (
    <div>
-      <button>Random entry</button>
+      <button onClick={getEntryData}>Random entry</button>
       <h1>{date}</h1>
-      <p>{entry}</p>
+      <p>{entryText}</p>
    </div> 
   )
 }
